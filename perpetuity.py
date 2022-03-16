@@ -36,3 +36,21 @@ def Perpetuity_with_Growth(
     rate = secondCashflow / firstCashflow
     PresentValue = firstCashflow / (1 - rate)
     return PresentValue
+
+
+def Annuity_without_growth(
+    startDate: int, frequency: int, periods: int, intrate: float, payment: int
+):
+    """
+    Calculates the present value of an annuity without growth.\n
+    startDate: the number of years from the present that the annuity starts.\n
+    frequency: the number of years between payments.\n
+    periods: the number of payments made.\n
+    intrate: the interest rate in decimal form.\n
+    payment: the amount of the payment.
+    """
+    firstCashflow = payment / ((1 + intrate) ** startDate)
+    secondCashflow = payment / ((1 + intrate) ** (startDate + frequency))
+    rate = secondCashflow / firstCashflow
+    PresentValue = firstCashflow * ((1 - (rate ** periods)) / (1 - rate))
+    return PresentValue
